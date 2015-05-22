@@ -1,0 +1,3 @@
+name = 'hello_world'
+description = 'Sample module to print hello world'
+core = "7.x"

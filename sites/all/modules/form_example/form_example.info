@@ -1,0 +1,3 @@
+core="7.x"
+description="example module to practise how to create module"
+name="form_example"

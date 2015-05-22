@@ -1,0 +1,49 @@
+<?php
+
+function hello_world_menu() {
+  $item = array();
+  $item['helloworld'] = array(
+    'title' => 'example',
+    'description' => 'helloworld.',
+    'page callback' => 'hello_world_page',
+    'access callback' => 'user_access',
+    'access arguments' => array('example'),
+  );
+  return $item;
+}
+function hello_world_permission() {
+  return array(
+    'example' => array(
+      'title' => t('example'),
+      'description' => t('Perform administration tasks for my module.'),
+    ),
+  );
+}
+
+function hello_world_page(){
+
+  $a = array();
+  $a[] = 'aa';
+  $a[] = 'cc';
+
+ // $form['gender'] = array(
+ //   '#type' => 'radios',
+ //   '#title' => 'Gender',
+ //   '#options' => $a,
+ //  );
+
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Name',
+    );
+
+  $form['last_name'] = array(
+    '#type' => 'textfield',
+    '#title' => 'last name',
+    );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Click Here',
+    );
+  return $form;
+}

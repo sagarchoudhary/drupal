@@ -1,0 +1,87 @@
+<?php
+function form_example_menu() {
+  $items = array();
+
+
+$items['examples/form-example'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Example Form', //page title
+    'description' => 'A form to mess around with.',
+    'page callback' => 'my_form', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+     //put the name of the form here
+    'access callback' => TRUE
+  );
+  return
+
+$items;
+}
+function my_form(){
+  return drupal_get_form('form_example_form');
+}
+function form_example_form($form, &$form_state) {
+
+  $form['radio'] = array(
+    '#type' => 'radios',
+    '#options' => array(
+      'textbox1' => t('Text Box 1'),
+      'textbox2' => t('Text Box 2'),
+    ),
+    '#title' => t('Choose Box'),
+  );
+
+  $form['textbox1'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Text Box 1'),
+
+    // This #states rule says that the "text box1 " textfield should only
+    // be shown if the "radio" form element is set to "Text Box1".
+    '#states' => array(
+      'visible' => array(
+        ':input[name="radio"]' => array('value' => 'textbox1'),
+      ),
+    ),
+  );
+
+$form['textbox2'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Text Box 2'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="radio"]' => array('value' => 'textbox2'),
+      ),
+    ),
+  );
+
+
+ // print_r($form_state['values']['radio']);
+
+
+
+
+ //  if($form_state['values']['radio'] == 1){
+ //    $form['textbox2'] = array(
+ //    '#type' => 'textfield',
+ //    '#title' => 'Text Box 2',
+ //    '#size' => 10,
+ //    '#maxlength' => 10,
+ //    '#required' => TRUE,
+ //    );
+
+ //  }
+
+
+
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Click Here!'),
+  );
+
+
+  return $form;
+}
+function form_example_form_validate($form, &$form_state) {
+
+}
+function
+
+form_example_form_submit($form, &$form_state) {
+}
